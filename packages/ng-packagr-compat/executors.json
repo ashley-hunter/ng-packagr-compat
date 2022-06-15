@@ -6,5 +6,12 @@
       "schema": "./src/executors/package/schema.json",
       "description": "Builds and packages an Angular library to be distributed as an NPM package. It supports incremental builds."
     }
+  },
+  "builders": {
+    "package": {
+      "implementation": "./src/executors/package/compat",
+      "schema": "./src/executors/package/schema.json",
+      "description": "Builds and packages an Angular library to be distributed as an NPM package. It supports incremental builds."
+    }
   }
 }
