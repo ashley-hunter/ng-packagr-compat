@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ng-packagr-compat/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/ng-packagr-compat",
+        "main": "packages/ng-packagr-compat/src/index.ts",
+        "tsConfig": "packages/ng-packagr-compat/tsconfig.lib.json",
+        "assets": [
+          "packages/ng-packagr-compat/*.md",
+          {
+            "input": "./packages/ng-packagr-compat/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/ng-packagr-compat/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/ng-packagr-compat",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/ng-packagr-compat",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/ng-packagr-compat/**/*.ts",
+          "packages/ng-packagr-compat/generators.json",
+          "packages/ng-packagr-compat/executors.json",
+          "packages/ng-packagr-compat/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/ng-packagr-compat"],
+      "options": {
+        "jestConfig": "packages/ng-packagr-compat/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@ashley-hunter/ng-packagr-compat",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "builders": "./executors.json",
+  "dependencies": {
+    "@angular/compiler-cli": "^13.0.0",
+    "ng-packagr": "^13.0.0",
+    "typescript": "~4.6.0"
+  }
+}
