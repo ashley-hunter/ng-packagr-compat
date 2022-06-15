@@ -52,6 +52,7 @@ describe('Package executor', () => {
       targetName: 'build',
       configurationName: 'production',
       workspace: { projects: { 'my-lib': { root: '/libs/my-lib' } } },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
     options = { project: 'my-lib' };
   });

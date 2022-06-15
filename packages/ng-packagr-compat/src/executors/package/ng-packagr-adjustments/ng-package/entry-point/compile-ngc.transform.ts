@@ -73,6 +73,7 @@ export const compileNgcTransformFactory = (
         options.cacheEnabled && options.cacheDirectory,
         options.watch,
         options.tailwindConfig
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ) as any;
 
       await compileSourceFiles(
@@ -85,6 +86,7 @@ export const compileNgcTransformFactory = (
           declaration: true,
           target: ts.ScriptTarget.ES2020,
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         entryPoint.cache.stylesheetProcessor as any,
         ngccProcessor,
         options.watch

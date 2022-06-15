@@ -2,7 +2,11 @@
   "name": "ng-packagr-compat",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "nx affected --target=lint --configuration=prod --all --parallel",
+    "test": "nx affected --target=test --configuration=prod --all --parallel",
+    "build": "nx affected --target=build --configuration=prod --all --parallel"
+  },
   "private": true,
   "dependencies": {
     "@swc/helpers": "~0.3.3",
