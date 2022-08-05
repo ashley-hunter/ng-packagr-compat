@@ -54,6 +54,19 @@
         "jestConfig": "packages/ng-packagr-compat/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs ng-packagr-compat {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
     }
   },
   "tags": []
