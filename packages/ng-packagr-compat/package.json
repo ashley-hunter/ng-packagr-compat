@@ -1,17 +1,16 @@
 {
   "name": "@ashley-hunter/ng-packagr-compat",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
   "builders": "./executors.json",
   "dependencies": {
-    "@angular/compiler-cli": "^13.0.0",
-    "@angular/compiler": "^13.0.0",
-    "@angular/core": "^13.0.0",
-    "ng-packagr": "^13.0.0",
-    "rxjs-for-await": "^1.0.0",
-    "typescript": "~4.6.0"
+    "@angular/compiler-cli": "^14.0.0",
+    "@angular/compiler": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "ng-packagr": "14.2.1",
+    "typescript": "4.6.4"
   }
 }

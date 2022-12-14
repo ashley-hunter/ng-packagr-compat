@@ -1,5 +1,5 @@
 import type { ExecutorContext } from '@nrwl/devkit';
-import { readCachedProjectGraph } from '@nrwl/devkit';
+import { eachValueFrom } from '@nrwl/devkit/src/utils/rxjs-for-await';
 import {
   calculateProjectDependencies,
   checkDependentProjectsHaveBeenBuilt,
@@ -10,8 +10,8 @@ import {
 import type { NgPackagr } from 'ng-packagr';
 import { resolve } from 'path';
 import { from } from 'rxjs';
-import { eachValueFrom } from 'rxjs-for-await';
 import { mapTo, switchMap, tap } from 'rxjs/operators';
+import { parseRemappedTsConfigAndMergeDefaults } from '../utilities/typescript';
 import { NX_ENTRY_POINT_PROVIDERS } from './ng-packagr-adjustments/ng-package/entry-point/entry-point.di';
 import { nxProvideOptions } from './ng-packagr-adjustments/ng-package/options.di';
 import {
@@ -38,13 +38,18 @@ async function initializeNgPackagr(
   packager.withBuildTransform(NX_PACKAGE_TRANSFORM.provide);
 
   if (options.tsConfig) {
-    const tsConfigPath = createTmpTsConfig(
+    const remappedTsConfigFilePath = createTmpTsConfig(
       options.tsConfig,
       context.root,
       context.workspace.projects[context.projectName].root,
       projectDependencies
     );
-    packager.withTsConfig(tsConfigPath);
+    const tsConfig = await parseRemappedTsConfigAndMergeDefaults(
+      context.root,
+      options.tsConfig,
+      remappedTsConfigFilePath
+    );
+    packager.withTsConfig(tsConfig);
   }
 
   return packager;
@@ -68,7 +73,7 @@ export function createLibraryExecutor(
   ) {
     const { target, dependencies, topLevelDependencies } =
       calculateProjectDependencies(
-        readCachedProjectGraph(),
+        context.projectGraph,
         context.root,
         context.projectName,
         context.targetName,

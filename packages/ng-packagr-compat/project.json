@@ -1,4 +1,5 @@
 {
+  "name": "ng-packagr-compat",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ng-packagr-compat/src",
   "projectType": "library",
@@ -49,15 +50,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ng-packagr-compat"],
+      "outputs": ["{workspaceRoot}/coverage/packages/ng-packagr-compat"],
       "options": {
         "jestConfig": "packages/ng-packagr-compat/jest.config.ts",
         "passWithNoTests": true
       }
     },
-
     "publish": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "node tools/scripts/publish.mjs ng-packagr-compat {args.ver} {args.tag}"
       },
