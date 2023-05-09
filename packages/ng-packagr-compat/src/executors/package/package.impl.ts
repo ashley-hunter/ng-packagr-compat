@@ -1,12 +1,12 @@
-import type { ExecutorContext } from '@nrwl/devkit';
-import { eachValueFrom } from '@nrwl/devkit/src/utils/rxjs-for-await';
+import type { ExecutorContext } from '@nx/devkit';
+import { eachValueFrom } from '@nx/devkit/src/utils/rxjs-for-await';
 import {
   calculateProjectDependencies,
   checkDependentProjectsHaveBeenBuilt,
   createTmpTsConfig,
   DependentBuildableProjectNode,
   updateBuildableProjectPackageJsonDependencies,
-} from '@nrwl/workspace/src/utilities/buildable-libs-utils';
+} from '@nx/js/src/utils/buildable-libs-utils';
 import type { NgPackagr } from 'ng-packagr';
 import { resolve } from 'path';
 import { from } from 'rxjs';
@@ -41,7 +41,7 @@ async function initializeNgPackagr(
     const remappedTsConfigFilePath = createTmpTsConfig(
       options.tsConfig,
       context.root,
-      context.workspace.projects[context.projectName].root,
+      context.projectsConfigurations.projects[context.projectName].root,
       projectDependencies
     );
     const tsConfig = await parseRemappedTsConfigAndMergeDefaults(
@@ -110,7 +110,7 @@ export function createLibraryExecutor(
     if (options.watch) {
       return yield* eachValueFrom(
         from(initializeNgPackagr(options, context, dependencies)).pipe(
-          switchMap((packagr) => packagr.watch()),
+          switchMap((packagr) => packagr.watch() as any),
           tap(() => updatePackageJson()),
           mapTo({ success: true })
         )

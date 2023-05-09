@@ -1,18 +1,18 @@
 {
-  "extends": "nx/presets/npm.json",
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "ng-packagr-compat",
-  "affected": {
-    "defaultBase": "main"
-  },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "NmQ1ZTg4YTYtMTM1My00MjBlLTkwNWUtZmQ3YmExMjZiYzhlfHJlYWQtd3JpdGU="
       }
     }
+  },
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "ng-packagr-compat",
+  "affected": {
+    "defaultBase": "main"
   },
   "targetDefaults": {
     "test": {
