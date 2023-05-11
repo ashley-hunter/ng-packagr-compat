@@ -110,7 +110,7 @@ export function createLibraryExecutor(
     if (options.watch) {
       return yield* eachValueFrom(
         from(initializeNgPackagr(options, context, dependencies)).pipe(
-          switchMap((packagr) => packagr.watch() as any),
+          switchMap((packagr) => packagr.watch()),
           tap(() => updatePackageJson()),
           mapTo({ success: true })
         )

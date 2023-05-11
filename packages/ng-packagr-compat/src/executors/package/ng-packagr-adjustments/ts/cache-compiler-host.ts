@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /**
  * Adapted from the original ng-packagr source.
  *
@@ -62,6 +63,7 @@ export function cacheCompilerHost(
     ...compilerHost,
 
     // ts specific
+    // @ts-ignore
     fileExists: (fileName: string) => {
       const cache = sourcesFileCache.getOrCreate(fileName);
       if (cache.exists === undefined) {
@@ -122,9 +124,9 @@ export function cacheCompilerHost(
         if (gte(ngPackagrVersion, '15.0.2')) {
           // Extract inline sourcemap which will later be used by rollup.
           const version = createHash('sha256').update(data).digest('hex');
-          let map: any = undefined;
+          let map = undefined;
           if (fileName.endsWith('.mjs')) {
-            const cachedData: any = outputCache.get(fileName);
+            const cachedData = outputCache.get(fileName);
             map =
               cachedData?.version === version
                 ? cachedData.map
@@ -134,9 +136,7 @@ export function cacheCompilerHost(
           outputCache.set(fileName, {
             content: data,
             version,
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            map: map as any,
+            map,
           });
         } else {
           outputCache.set(fileName, {
@@ -247,7 +247,7 @@ export function cacheCompilerHost(
 
       return null;
     },
-  } as any;
+  };
 }
 
 export function augmentProgramWithVersioning(program: ts.Program): void {
