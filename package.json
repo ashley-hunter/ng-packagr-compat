@@ -6,7 +6,7 @@
     "lint": "nx affected --target=lint --configuration=prod --all --parallel",
     "test": "nx affected --target=test --configuration=prod --all --parallel",
     "build": "nx affected --target=build --configuration=prod --all --parallel",
-    "publish": "npx nx publish ng-packagr-compat --ver=2.0.1"
+    "publish": "npx nx publish ng-packagr-compat --ver=2.0.2 --tag=latest"
   },
   "private": true,
   "dependencies": {
