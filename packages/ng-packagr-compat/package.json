@@ -1,15 +1,22 @@
 {
   "name": "@ashley-hunter/ng-packagr-compat",
-  "version": "1.0.0",
+  "version": "2.0.3",
   "license": "MIT",
   "main": "src/index.js",
   "generators": "./generators.json",
   "executors": "./executors.json",
   "builders": "./executors.json",
   "dependencies": {
+    "@angular/animations": "^15.0.0",
     "@angular/compiler-cli": "^15.0.0",
     "@angular/compiler": "^15.0.0",
     "@angular/core": "^15.0.0",
+    "@angular/common": "^15.0.0",
+    "@angular/cdk": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@angular/router": "^15.0.0",
+    "@angular/platform-browser": "^15.0.0",
+    "@angular/platform-browser-dynamic": "^15.0.0",
     "ng-packagr": "15.2.2",
     "typescript": "4.8.2"
   }
